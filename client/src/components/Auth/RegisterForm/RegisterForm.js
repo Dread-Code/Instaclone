@@ -17,7 +17,7 @@ export default function RegisterForm({ setShowLogin }) {
             name: Yup.string().required("Tu nombre es obligatorio."),
             username: Yup.string().matches(
                 /^[a-zA-Z0-9-]*$/, 
-                "El nombre del usuario no puede tener espacio"
+                "El nombre del usuario no puede tener espacios"
             )
             .required("El nombre de usuario es obligatorio"),
             email: Yup.string().email("El email no es valido").required("El email es obligatorio"),
@@ -37,7 +37,7 @@ export default function RegisterForm({ setShowLogin }) {
                     }
                 })
                 toast.success("El usuario se ha registrado correctamente")
-                setShowLogin(true)
+                setShowLogin(false)
             } catch (error) {
                 toast.error(error.message)
                 console.log(error.message)

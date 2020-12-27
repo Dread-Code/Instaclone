@@ -1,14 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import { ToastContainer } from 'react-toastify'
 import client from './config/apollo'
 import Auth from './pages/Auth'
+import Home from './pages/Home'
+import { getToken } from './utils/token'
+import AuthContext from './context/AuthContext'
 
 export default function App() {
   const [auth, setAuth] = useState(undefined)
+
+  useEffect(() => {
+    const token = getToken()
+    if (!token) {
+      setAuth(null)
+    }else{ 
+      setAuth(token)
+    }
+  }, [])
+  const logOut = () => {
+    console.log("cerrar seison")
+  }
+
+  const setUser = (user) => {
+    setAuth(user)
+  }
+
+  const authData = useMemo(
+    () => ({
+      auth,
+      logOut,
+      setUser
+    }), 
+    [auth]
+  )
+
   return (
     <ApolloProvider client={client}>
-      {!auth ? <Auth /> : <h1> Estas logueado </h1>}
+      <AuthContext.Provider value={authData}>
+      {!auth ? <Auth /> : <Home />}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -20,6 +50,7 @@ export default function App() {
         draggable
         pauseOnHover
       />
+      </AuthContext.Provider>
     </ApolloProvider>
   );
 }
