@@ -36,7 +36,7 @@ export default function RegisterForm({ setShowLogin }) {
                         input: newUser
                     }
                 })
-                toast.success("El usuario registrado correctamente ")
+                toast.success("El usuario se ha registrado correctamente")
                 setShowLogin(true)
             } catch (error) {
                 toast.error(error.message)
