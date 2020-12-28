@@ -1,3 +1,5 @@
+//Layouts
+import LayoutBasic from '../layouts/LayoutBasic' 
 // Pages
 import Home from '../pages/Home'
 import User from '../pages/User'
@@ -7,15 +9,18 @@ const routes = [
     {
         path: '/', 
         component: Home,
+        layout: LayoutBasic,
         exact: true
     },
     {
         path: '/:username',
         component: User,
+        layout: LayoutBasic,
         exact: true
     }, 
     {
-        component: Error404
+        component: Error404,
+        layout: LayoutBasic
     }
 ]
 

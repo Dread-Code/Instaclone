@@ -13,7 +13,9 @@ export default function Navigation() {
                         path={route.path}
                         exact={route.exact}
                         render={(props) =>(
+                            <route.layout>
                             <route.component {...props}/>
+                            </route.layout>
                         )}
                     />
                 ))}
