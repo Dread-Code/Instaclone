@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Grid, Image } from 'semantic-ui-react'
 import { useQuery } from '@apollo/client'
-import { GET_USER } from '../../gql/user'
-import ImageNotFound from '../../assets/png/avatar.png'
+import { GET_USER } from '../../../gql/user'
+import ImageNotFound from '../../../assets/png/avatar.png'
 import './Profile.scss' 
-import UserNotFound from '../UserNotFound'
-import ModalBasic from '../Modal/ModalBasic'
-import AvatarForm from '../User/AvatarForm/AvatarForm'
+import UserNotFound from '../../UserNotFound'
+import ModalBasic from '../../Modal/ModalBasic'
+import AvatarForm from '../AvatarForm/AvatarForm'
+import userAuth from '../../../hooks/useAuth'
 
 export default function Profile({ username }) {
     const [showModal, setShowModal] = useState(false)
@@ -17,8 +18,10 @@ export default function Profile({ username }) {
     });
     if (loading) return null
     if(error) return <UserNotFound/>
-    const { name, siteWeb, description } = data.getUser
-    console.log(data.getUser)
+    const { auth } = userAuth() 
+    const { name, siteWeb, description, avatar } = data.getUser
+    console.log(username)
+    console.log(auth)
 
     const handlerModal = (type) => {
 
@@ -26,7 +29,7 @@ export default function Profile({ username }) {
             case "avatar":
                 setTitleModal("Cambiar Foto de Perfil")
                 setShowModal(true)  
-                setChildrenModal(<AvatarForm/>)
+                setChildrenModal(<AvatarForm setShowModal={setShowModal} auth={auth}/>)
                 break
             
             default:
@@ -38,7 +41,7 @@ export default function Profile({ username }) {
         <>
             <Grid className="profile">
                 <Grid.Column width={5} className="profile__left">
-                    <Image src={ImageNotFound} avatar onClick={()=> handlerModal("avatar")} />
+                    <Image src={avatar ? avatar : ImageNotFound} avatar onClick={()=> username === auth.username && handlerModal("avatar")} />
                 </Grid.Column>
                 <Grid.Column width={11} className="profile__right">
                     <div>Header Profile</div>
