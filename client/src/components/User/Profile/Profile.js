@@ -8,6 +8,8 @@ import UserNotFound from '../../UserNotFound'
 import ModalBasic from '../../Modal/ModalBasic'
 import AvatarForm from '../AvatarForm/AvatarForm'
 import userAuth from '../../../hooks/useAuth'
+import HeaderProfile from './HeaderProfile/HeaderProfile'
+import SettingsForm from '../SettingsForm/SettingsForm'
 
 export default function Profile({ username }) {
     const [showModal, setShowModal] = useState(false)
@@ -31,7 +33,11 @@ export default function Profile({ username }) {
                 setShowModal(true)  
                 setChildrenModal(<AvatarForm setShowModal={setShowModal} auth={auth}/>)
                 break
-            
+            case "settings":
+                setTitleModal("")
+                setChildrenModal(<SettingsForm setShowModal={setShowModal} auth={auth}/>)
+                setShowModal(true)
+                break
             default:
                 break
         }
@@ -41,10 +47,10 @@ export default function Profile({ username }) {
         <>
             <Grid className="profile">
                 <Grid.Column width={5} className="profile__left">
-                    <Image src={avatar ? avatar : ImageNotFound} avatar onClick={()=> username === auth.username && handlerModal("avatar")} />
+                    <Image src={avatar ? avatar : ImageNotFound} avatar onClick={() => username === auth.username && handlerModal("avatar")} />
                 </Grid.Column>
                 <Grid.Column width={11} className="profile__right">
-                    <div>Header Profile</div>
+                    <HeaderProfile username={username} auth={auth} handlerModal={handlerModal}/>
                     <div>Followers</div>
                     <div className="other"> 
                         <p className="name">{name}</p>

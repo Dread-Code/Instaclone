@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client'
 import { ToastContainer } from 'react-toastify'
 import client from './config/apollo'
 import Auth from './pages/Auth'
-import { getToken, decodeToken } from './utils/token'
+import { getToken, decodeToken, removeToken } from './utils/token'
 import AuthContext from './context/AuthContext'
 import Navigation from './routes/Navigation';
 
@@ -18,8 +18,9 @@ export default function App() {
       setAuth(decodeToken(token))
     }
   }, [])
-  const logOut = () => {
-    console.log("cerrar seison")
+  const logout = () => {
+    removeToken()
+    setAuth(null)
   }
 
   const setUser = (user) => {
@@ -29,11 +30,12 @@ export default function App() {
   const authData = useMemo(
     () => ({
       auth,
-      logOut,
+      logout,
       setUser
     }), 
     [auth]
   )
+
   if (auth === undefined) return null
   
   return (

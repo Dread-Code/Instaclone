@@ -1,0 +1,13 @@
+@import "../../../index.scss";
+
+.settings-form{
+    display: flex;
+    flex-direction: column;
+
+    .ui.button{
+        background-color: $background-light i ;
+        border-bottom: 1px solid $border-grey;
+        padding: 18 px 0;
+        border-radius: 0;
+    }
+}
