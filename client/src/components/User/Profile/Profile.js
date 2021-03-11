@@ -35,7 +35,13 @@ export default function Profile({ username }) {
                 break
             case "settings":
                 setTitleModal("")
-                setChildrenModal(<SettingsForm setShowModal={setShowModal} auth={auth}/>)
+                setChildrenModal(
+                <SettingsForm 
+                setShowModal={setShowModal} 
+                auth={auth} 
+                setTitleModal={setTitleModal}
+                setChildrenModal={setChildrenModal}
+                />)
                 setShowModal(true)
                 break
             default:
