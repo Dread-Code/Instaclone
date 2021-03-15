@@ -1,10 +1,15 @@
 import React from 'react'
 import { Form, Button } from 'semantic-ui-react'
-import { useForm, useFormik } from 'formik'
+import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { toast } from 'react-toastify'
+import { useMutation } from '@apollo/client'
+import { UPDATE_USER } from '../../../gql/user'
 import "./PasswordForm.scss"
 
-export default function PaswordForm() {
+export default function PaswordForm({ logout }) {
+
+    const [ updateUSer ] = useMutation(UPDATE_USER)
 
     const { handleSubmit, values, handleChange, errors } = useFormik({
         initialValues: initialValues(),
@@ -14,8 +19,24 @@ export default function PaswordForm() {
             repeatNewPassword: Yup.string().required().oneOf([Yup.ref("newPassword")]),
         }),
         onSubmit: async (formData) => {
-            console.log("FOrmulario enviado")
-            console.log(formData)
+            try {
+                const { data:{ updateUser } } =  await updateUSer({
+                    variables: { 
+                        input: {
+                            currentPassword: formData.currentPassword,
+                            newPassword: formData.newPassword
+                        }
+                    }
+                })
+                console.log(updateUser)
+                if (!updateUser){
+                    toast.error("Error al cambiar la contraseña")
+                } else {
+                    logout()
+                }
+            } catch (error) {
+                toast.error("Error al cambiar la contraseña")
+            }
         }
     })
 

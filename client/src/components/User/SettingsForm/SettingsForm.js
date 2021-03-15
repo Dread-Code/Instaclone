@@ -14,7 +14,7 @@ export default function SettingsForm({ setShowModal, setTitleModal, setChildrenM
 
     const onChangePassword = () => {
         setTitleModal("Cambiar tu contraseña")
-        setChildrenModal(<PasswordForm/>)
+        setChildrenModal(<PasswordForm logout={ onLogout }/>)
     }
 
     const onLogout = () => {
