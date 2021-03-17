@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Logo from '../../assets/png/instaclone.png'
 import './Header.scss'
 import RightHeader from './RightHeader/RightHeader'
+import Search from './Search/Search'
 
 export default function Header() {
     return (
@@ -16,7 +17,7 @@ export default function Header() {
                         </Link>
                     </Grid.Column>
                     <Grid.Column width={10} className="buscador">
-                        <p>Buscador</p>
+                        <Search/>
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <RightHeader/>

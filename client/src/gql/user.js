@@ -54,3 +54,13 @@ export const UPDATE_USER = gql`
         updateUser(input: $input)
     }
 `
+
+export const SEARCH_USER = gql`
+    query search($search: String){
+        search(search: $search){
+            name
+            username
+            avatar
+        }
+    }
+`
