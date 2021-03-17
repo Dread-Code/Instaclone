@@ -28,7 +28,6 @@ export default function PaswordForm({ logout }) {
                         }
                     }
                 })
-                console.log(updateUser)
                 if (!updateUser){
                     toast.error("Error al cambiar la contraseña")
                 } else {

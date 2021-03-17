@@ -22,8 +22,6 @@ export default function Profile({ username }) {
     if(error) return <UserNotFound/>
     const { auth } = userAuth() 
     const { name, siteWeb, description, avatar } = data.getUser
-    console.log(username)
-    console.log(auth)
 
     const handlerModal = (type) => {
 
@@ -43,6 +41,7 @@ export default function Profile({ username }) {
                 setChildrenModal={setChildrenModal}
                 getUser={data.getUser}
                 refetch={refetch}
+                auth={auth}
                 />)
                 setShowModal(true)
                 break
