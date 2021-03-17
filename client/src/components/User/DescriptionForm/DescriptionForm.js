@@ -3,7 +3,7 @@ import { Form, Button, TextArea } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useMutation } from '@apollo/client'
-import { UPDATE_USER, GET_USER } from '../../../gql/user'
+import { UPDATE_USER } from '../../../gql/user'
 import { toast } from 'react-toastify'
 import './DescriptionForm.scss'
 
@@ -12,7 +12,7 @@ export default function DescriptionForm({ currentDescription, refetch, setShowMo
     const [ updateUser ] = useMutation(UPDATE_USER, {})
 
     const { values, handleSubmit, handleChange, errors } = useFormik({
-        initialValues: { 
+        initialValues: {
             description: currentDescription
         },
         validationSchema: Yup.object({

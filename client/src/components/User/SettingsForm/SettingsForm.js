@@ -7,6 +7,7 @@ import "./SettingsForm.scss"
 import PasswordForm from '../PasswordForm'
 import EmailForm from '../EmailForm/EmailForm'
 import DescriptionForm from '../DescriptionForm/DescriptionForm'
+import WebPageForm from '../WebPageForm/WebPageForm'
 
 export default function SettingsForm({ setShowModal, setTitleModal, setChildrenModal, getUser, refetch, auth }) {
 
@@ -26,7 +27,12 @@ export default function SettingsForm({ setShowModal, setTitleModal, setChildrenM
 
     const onChangeDescription = () => {
         setTitleModal("Cambiar descripción")
-        setChildrenModal(<DescriptionForm setShowModal={setShowModal} currentDescription={getUser.description} auth={auth} refetch={refetch}/>)
+        setChildrenModal(<DescriptionForm setShowModal={setShowModal} currentDescription={getUser.description} refetch={refetch}/>)
+    }
+
+    const onChangeWebPage = () => {
+        setTitleModal("Cambiar Pagina Web")
+        setChildrenModal(<WebPageForm setShowModal={setShowModal} currentSiteWeb={getUser.siteWeb} refetch={refetch} />)
     }
 
     const onLogout = () => {
@@ -40,7 +46,7 @@ export default function SettingsForm({ setShowModal, setTitleModal, setChildrenM
             <Button onClick={onChangePassword}>Cambiar contraseña</Button>
             <Button onClick={onChangeEmail}>Cambiar email</Button>
             <Button onClick={onChangeDescription}>Descripción</Button>
-            <Button>Sitio web</Button>
+            <Button onClick={onChangeWebPage}>Sitio web</Button>
             <Button onClick={onLogout}>Cerrar sesion</Button>
             <Button onClick={() => setShowModal(false)}>Cancelar</Button>
 
