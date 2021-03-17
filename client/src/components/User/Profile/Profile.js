@@ -15,7 +15,7 @@ export default function Profile({ username }) {
     const [showModal, setShowModal] = useState(false)
     const [titleModal, setTitleModal] = useState("")
     const [childrenModal, setChildrenModal] = useState(null)
-    const { data, loading, error } = useQuery(GET_USER, { 
+    const { data, loading, error, refetch } = useQuery(GET_USER, { 
         variables: { username }
     });
     if (loading) return null
@@ -41,6 +41,8 @@ export default function Profile({ username }) {
                 auth={auth} 
                 setTitleModal={setTitleModal}
                 setChildrenModal={setChildrenModal}
+                getUser={data.getUser}
+                refetch={refetch}
                 />)
                 setShowModal(true)
                 break
