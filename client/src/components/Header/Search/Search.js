@@ -18,7 +18,7 @@ export default function Search() {
     })
 
     const onChange = (e) => {
-        if (e.target.value.length > 0) {
+        if (e.target.value.length) {
             setSearch(e.target?.value)
         }
         if (e.target.value.length === 0) {
