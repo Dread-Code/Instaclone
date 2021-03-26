@@ -18,7 +18,12 @@ export default function Search() {
     })
 
     const onChange = (e) => {
-        if (e.target.value) setSearch(e.target.value)
+        if (e.target.value.length > 0) {
+            setSearch(e.target?.value)
+        }
+        if (e.target.value.length === 0) {
+            setSearch(null)
+        }
     }
 
     useEffect(() => {
