@@ -10,6 +10,7 @@ import AvatarForm from '../AvatarForm/AvatarForm'
 import userAuth from '../../../hooks/useAuth'
 import HeaderProfile from './HeaderProfile/HeaderProfile'
 import SettingsForm from '../SettingsForm/SettingsForm'
+import Followers from './Followers/Followers'
 
 export default function Profile({ username }) {
     const [showModal, setShowModal] = useState(false)
@@ -58,7 +59,7 @@ export default function Profile({ username }) {
                 </Grid.Column>
                 <Grid.Column width={11} className="profile__right">
                     <HeaderProfile username={username} auth={auth} handlerModal={handlerModal}/>
-                    <div>Followers</div>
+                    <Followers username = {username}/>
                     <div className="other"> 
                         <p className="name">{name}</p>
                         {siteWeb&& (

@@ -11,7 +11,6 @@ export default function HeaderProfile({ username, auth, handlerModal }) {
             username: username
         }
     })
-
     const [follow] = useMutation(FOLLOW)
     const [unFollow] = useMutation(UNFOLLOW)
 
