@@ -21,10 +21,27 @@ export const UNFOLLOW = gql`
 export const GET_FOLLOWERS = gql`
     query getFollowers($username: String!){
         getFollowers(username: $username){
-            username
-            name
-            email
-            avatar
+            followers{
+                id
+                name
+                username
+                avatar
+              }
+              follow
+        }
+    }
+`
+
+export const WS_GET_FOLLOWERS = gql`
+    subscription newFollower($username: String){
+        newFollower(username:$username){
+            followers{
+                id
+                name
+                username
+                avatar
+              }
+            follow
         }
     }
 `
