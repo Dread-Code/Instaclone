@@ -4,6 +4,7 @@ import { useQuery, useSubscription,  useApolloClient } from '@apollo/client'
 import { GET_FOLLOWERS, WS_GET_FOLLOWERS } from '../../../../gql/follow'
 import ModalBasic from '../../../Modal/ModalBasic'
 import "./Followers.scss"
+import UsersList from '../../UsersList/UsersList'
 
 export default function Followers({ username }) {
 
@@ -58,9 +59,7 @@ export default function Followers({ username }) {
         setTittleModal("Seguidores")
         setShowModal(true)
         setChildrenModal(
-            <div>
-                <h3>Followers</h3>
-            </div>
+            <UsersList users={followers} setShowModal={setShowModal}/>
         )
     }
 
