@@ -45,3 +45,14 @@ export const WS_GET_FOLLOWERS = gql`
         }
     }
 `
+
+export const GET_FOLLOWS = gql`
+    query getFollows($username: String! ){
+        getFollows(username: $username){
+            id
+            name
+            username
+            avatar
+        }
+    }
+`

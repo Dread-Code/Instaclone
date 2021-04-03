@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { set, size } from 'lodash'
 import { useQuery, useSubscription,  useApolloClient } from '@apollo/client'
-import { GET_FOLLOWERS, WS_GET_FOLLOWERS } from '../../../../gql/follow'
+import { GET_FOLLOWERS, WS_GET_FOLLOWERS, GET_FOLLOWS } from '../../../../gql/follow'
 import ModalBasic from '../../../Modal/ModalBasic'
 import "./Followers.scss"
 import UsersList from '../../UsersList/UsersList'
@@ -9,6 +9,8 @@ import UsersList from '../../UsersList/UsersList'
 export default function Followers({ username }) {
 
     const [followers, setFollowers] = useState(null)
+    const [follows, setFollows] = useState(null)
+
     const [showModal, setShowModal] = useState(false)
     const [tittleModal, setTittleModal] = useState("")
     const [childrenModal, setChildrenModal] = useState(null)
@@ -23,19 +25,31 @@ export default function Followers({ username }) {
         variables: { username }
     })
 
-    const { data, loading, error } = useSubscription(WS_GET_FOLLOWERS,{
+    const {
+        data: dataFollows,
+        loading: loadingFollows,
+        refetch
+    } = useQuery(GET_FOLLOWS, {
+        variables: {
+            username
+        }
+    })
+
+    const { data } = useSubscription(WS_GET_FOLLOWERS,{
         variables: { username }
     })
   
     useEffect(() => {
         if (!isMounted.current) {
             isMounted.current = true
-            setFollowers(dataFollowers?.getFollowers?.followers)    
+            setFollowers(dataFollowers?.getFollowers?.followers)
+            refetch()
+
         }
         return () => {
             isMounted.current = false
         }
-    }, [dataFollowers]) 
+    }, [dataFollowers])
 
     useEffect(() =>{
         let followers = data?.newFollower
@@ -63,14 +77,23 @@ export default function Followers({ username }) {
         )
     }
 
+    const openFollows = () => {
+        setTittleModal("Seguidos")
+        setShowModal(true)
+        setChildrenModal(
+            <UsersList users={dataFollows.getFollows} setShowModal={setShowModal}/>
+        )
+    }
+
     if (loadingFollowers) return null
+    if(loadingFollows) return null
     
     return (
         <>
         <div className="followers">
             <p> <span>**</span> Publicaciones</p>
             <p className="link" onClick={openFollowers}><span>{size(followers)}</span> Seguidores</p>
-            <p className="link"><span>**</span> Seguidos</p>
+            <p className="link" onClick={openFollows}><span>{size(dataFollows.getFollows)}</span> Seguidos</p>
         </div>
         <ModalBasic show={ showModal } setShow={ setShowModal } title={ tittleModal } children={ childrenModal }/>
         </>
