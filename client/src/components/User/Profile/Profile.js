@@ -36,8 +36,7 @@ export default function Profile({ username }) {
                 setTitleModal("")
                 setChildrenModal(
                 <SettingsForm 
-                setShowModal={setShowModal} 
-                auth={auth} 
+                setShowModal={setShowModal}
                 setTitleModal={setTitleModal}
                 setChildrenModal={setChildrenModal}
                 getUser={data.getUser}

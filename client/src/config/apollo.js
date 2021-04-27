@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, split } from '@apollo/client'
-import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { createUploadLink } from 'apollo-upload-client'

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { set, size } from 'lodash'
+import { size } from 'lodash'
 import { useQuery, useSubscription,  useApolloClient } from '@apollo/client'
 import { GET_FOLLOWERS, WS_GET_FOLLOWERS, GET_FOLLOWS } from '../../../../gql/follow'
 import ModalBasic from '../../../Modal/ModalBasic'
@@ -9,7 +9,6 @@ import UsersList from '../../UsersList/UsersList'
 export default function Followers({ username }) {
 
     const [followers, setFollowers] = useState(null)
-    const [follows, setFollows] = useState(null)
 
     const [showModal, setShowModal] = useState(false)
     const [tittleModal, setTittleModal] = useState("")
@@ -87,11 +86,10 @@ export default function Followers({ username }) {
 
     if (loadingFollowers) return null
     if(loadingFollows) return null
-    
     return (
         <>
         <div className="followers">
-            <p> <span>**</span> Publicaciones</p>
+            <p> <span>{"HOla"}</span> Publicaciones</p>
             <p className="link" onClick={openFollowers}><span>{size(followers)}</span> Seguidores</p>
             <p className="link" onClick={openFollows}><span>{size(dataFollows.getFollows)}</span> Seguidos</p>
         </div>
