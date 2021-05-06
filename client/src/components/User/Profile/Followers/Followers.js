@@ -9,7 +9,6 @@ import UsersList from '../../UsersList/UsersList'
 export default function Followers({ username }) {
 
     const [followers, setFollowers] = useState(null)
-
     const [showModal, setShowModal] = useState(false)
     const [tittleModal, setTittleModal] = useState("")
     const [childrenModal, setChildrenModal] = useState(null)
@@ -89,7 +88,7 @@ export default function Followers({ username }) {
     return (
         <>
         <div className="followers">
-            <p> <span>{"HOla"}</span> Publicaciones</p>
+            <p> <span>{"**"}</span> Publicaciones</p>
             <p className="link" onClick={openFollowers}><span>{size(followers)}</span> Seguidores</p>
             <p className="link" onClick={openFollows}><span>{size(dataFollows.getFollows)}</span> Seguidos</p>
         </div>
