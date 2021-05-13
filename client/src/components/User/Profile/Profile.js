@@ -12,7 +12,7 @@ import HeaderProfile from './HeaderProfile/HeaderProfile'
 import SettingsForm from '../SettingsForm/SettingsForm'
 import Followers from './Followers/Followers'
 
-export default function Profile({ username }) {
+export default function Profile({ username, totalPublications }) {
     const [showModal, setShowModal] = useState(false)
     const [titleModal, setTitleModal] = useState("")
     const [childrenModal, setChildrenModal] = useState(null)
@@ -58,7 +58,7 @@ export default function Profile({ username }) {
                 </Grid.Column>
                 <Grid.Column width={11} className="profile__right">
                     <HeaderProfile username={username} auth={auth} handlerModal={handlerModal}/>
-                    <Followers username = {username}/>
+                    <Followers username = {username} totalPublications={totalPublications}/>
                     <div className="other"> 
                         <p className="name">{name}</p>
                         {siteWeb&& (
