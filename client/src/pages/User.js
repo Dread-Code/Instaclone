@@ -16,12 +16,11 @@ export default function User() {
     })
     
     if(loading) return null
-    const { getPublications } = data
 
     return (
         <>
-            <Profile username = {username} totalPublications={size(getPublications)}/>
-            <Publications getPublications={getPublications}/>
+            <Profile username = {username} totalPublications={size(data?.getPublications)}/>
+            <Publications getPublications={data?.getPublications}/>
         </>
     )
 }

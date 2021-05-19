@@ -12,11 +12,14 @@ export const PUBLISH = gql`
 export const GET_PUBLICATIONS = gql`
     query getPublications($username: String){
             getPublications(username: $username){
-            id
-            idUser
-            file
-            typeFile
-            createdAt
+                publications {
+                    id
+                    idUser
+                    file
+                    typeFile
+                    createdAt
+                }
+                username
         }
     }
 `
