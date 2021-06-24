@@ -9,3 +9,17 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const GET_COMMENTS = gql`
+  query getComments($id: ID) {
+    getComments(id: $id) {
+      idUser {
+        username
+        avatar
+        name
+      }
+      comment
+      createdAt
+    }
+  }
+`;

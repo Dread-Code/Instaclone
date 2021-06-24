@@ -19,12 +19,11 @@ function CommentForm({ publication }) {
       }),
       onSubmit: async ({ comment }) => {
         try {
-          let result = await addComment({
+          await addComment({
             variables: {
               input: { idPublication: publication.id, comment },
             },
           });
-          console.log(result);
           handleReset();
         } catch (error) {
           console.log(error);
@@ -32,7 +31,6 @@ function CommentForm({ publication }) {
       },
     }
   );
-
   return (
     <Form className="comment-form" onSubmit={handleSubmit}>
       <Form.Input

@@ -1,0 +1,26 @@
+@import "../../../../scss/index.scss";
+
+.comments {
+  height: calc(100% - (6em));
+  overflow-y: scroll;
+
+  .comment {
+    display: flex;
+    align-items: center;
+    padding: 0.7em;
+    border-bottom: 1px solid $border-grey;
+    color: $font-dark;
+  }
+
+  img {
+    margin-right: 1em !important;
+  }
+
+  p {
+    margin: 0;
+
+    &:first-of-type {
+      font-weight: bold;
+    }
+  }
+}
