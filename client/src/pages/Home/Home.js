@@ -1,13 +1,16 @@
-import React from 'react'
-import useAuth from '../../hooks/useAuth'
-import './Home.scss'
-
+import React from "react";
+import { Grid } from "semantic-ui-react";
+import "./Home.scss";
 
 export default function Home() {
-    const auth = useAuth()
-    return (
-        <div>
-            <h1>Estamos en la Home</h1>
-        </div>
-    )
+  return (
+    <Grid className="home">
+      <Grid.Column className="home__left" width={11}>
+        <h2>Feed</h2>
+      </Grid.Column>
+      <Grid.Column className="home_right" width={5}>
+        <h2>usuario no Seguidos</h2>
+      </Grid.Column>
+    </Grid>
+  );
 }
