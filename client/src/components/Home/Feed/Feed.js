@@ -6,7 +6,6 @@ import { useQuery } from "@apollo/client";
 import { GET_PUBLICATIONS_FOLLOWEDS } from "../../../gql/publication";
 import Actions from "../../Modal/ModalPublication/Actions";
 import CommentForm from "../../Modal/ModalPublication/CommentForm";
-
 import ImageNotFound from "../../../assets/png/avatar.png";
 import "./Feed.scss";
 import ModalPublication from "../../Modal/ModalPublication";

@@ -1,58 +1,67 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const IS_FOLLOW = gql`
-    query isFollow($username: String!){
-        isFollow(username: $username)
-    }
-`
-
+  query isFollow($username: String!) {
+    isFollow(username: $username)
+  }
+`;
 
 export const FOLLOW = gql`
-    mutation follow($username: String!){
-        follow(username: $username)
-    }
-`
+  mutation follow($username: String!) {
+    follow(username: $username)
+  }
+`;
 
 export const UNFOLLOW = gql`
-    mutation unFollow($username: String!){
-        unFollow(username: $username)
-    }
-`
+  mutation unFollow($username: String!) {
+    unFollow(username: $username)
+  }
+`;
 export const GET_FOLLOWERS = gql`
-    query getFollowers($username: String!){
-        getFollowers(username: $username){
-            followers{
-                id
-                name
-                username
-                avatar
-              }
-              follow
-        }
+  query getFollowers($username: String!) {
+    getFollowers(username: $username) {
+      followers {
+        id
+        name
+        username
+        avatar
+      }
+      follow
     }
-`
+  }
+`;
 
 export const WS_GET_FOLLOWERS = gql`
-    subscription newFollower($username: String){
-        newFollower(username:$username){
-            followers{
-                id
-                name
-                username
-                avatar
-              }
-            follow
-        }
+  subscription newFollower($username: String) {
+    newFollower(username: $username) {
+      followers {
+        id
+        name
+        username
+        avatar
+      }
+      follow
     }
-`
+  }
+`;
 
 export const GET_FOLLOWS = gql`
-    query getFollows($username: String! ){
-        getFollows(username: $username){
-            id
-            name
-            username
-            avatar
-        }
+  query getFollows($username: String!) {
+    getFollows(username: $username) {
+      id
+      name
+      username
+      avatar
     }
-`
+  }
+`;
+
+export const GET_NOT_FOLLOWEDS = gql`
+  query getNotFolloweds {
+    getNotFolloweds {
+      username
+      avatar
+      name
+    }
+  }
+`;
