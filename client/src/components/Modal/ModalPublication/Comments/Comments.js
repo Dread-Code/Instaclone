@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Image } from "semantic-ui-react";
 import { map } from "lodash";
 import { GET_COMMENTS, WS_GET_COMMENTS } from "../../../../gql/comment";
@@ -8,7 +8,6 @@ import ImageNotFound from "../../../../assets/png/avatar.png";
 import "./Comments.scss";
 
 const Comments = ({ publication }) => {
-  const [comments, setComments] = useState([]);
   const client = useApolloClient();
   const { data, loading } = useQuery(GET_COMMENTS, {
     variables: {
@@ -22,10 +21,6 @@ const Comments = ({ publication }) => {
     },
   });
   useEffect(() => {
-    setComments(data?.getComments);
-  }, [data]);
-
-  useEffect(() => {
     if (dataWs?.newComment) {
       client.writeQuery({
         query: GET_COMMENTS,
@@ -37,13 +32,13 @@ const Comments = ({ publication }) => {
         },
       });
     }
-  }, [dataWs, publication, client]);
+  }, [dataWs]);
 
   if (loading) return null;
 
   return (
     <div className="comments">
-      {map(comments, (comment, index) => (
+      {map(data.getComments, (comment, index) => (
         <Link
           to={`/${comment.idUser.username}`}
           className="comment"
